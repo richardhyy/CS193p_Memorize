@@ -18,6 +18,8 @@
 		7983FA1925B701C5000675DE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7983FA1825B701C5000675DE /* Preview Assets.xcassets */; };
 		7983FA2125B709FF000675DE /* Array+Only.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7983FA2025B709FF000675DE /* Array+Only.swift */; };
 		7983FA2525B70D44000675DE /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7983FA2425B70D44000675DE /* Theme.swift */; };
+		79E00DD425B7D58200D6714F /* Pie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E00DD325B7D58200D6714F /* Pie.swift */; };
+		79E00DD725B7DBC000D6714F /* Cardify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E00DD625B7DBC000D6714F /* Cardify.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		7983FA1825B701C5000675DE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		7983FA2025B709FF000675DE /* Array+Only.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Only.swift"; sourceTree = "<group>"; };
 		7983FA2425B70D44000675DE /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		79E00DD325B7D58200D6714F /* Pie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pie.swift; sourceTree = "<group>"; };
+		79E00DD625B7DBC000D6714F /* Cardify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cardify.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +82,8 @@
 				7968D01525B673E900CCC273 /* Assets.xcassets */,
 				7968D01A25B673E900CCC273 /* Info.plist */,
 				7968D01725B673E900CCC273 /* Preview Content */,
+				79E00DD325B7D58200D6714F /* Pie.swift */,
+				79E00DD625B7DBC000D6714F /* Cardify.swift */,
 			);
 			path = Memorize;
 			sourceTree = "<group>";
@@ -159,6 +165,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79E00DD725B7DBC000D6714F /* Cardify.swift in Sources */,
+				79E00DD425B7D58200D6714F /* Pie.swift in Sources */,
 				7983FA2525B70D44000675DE /* Theme.swift in Sources */,
 				7968D02225B686D900CCC273 /* MemoryGame.swift in Sources */,
 				7968D01425B673E800CCC273 /* EmojiMemoryGameView.swift in Sources */,

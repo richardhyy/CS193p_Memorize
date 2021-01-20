@@ -10,10 +10,10 @@
 import Foundation
 
 struct MemoryGame<CardContent> where CardContent: Equatable {
-    var cards: [Card]
-    var theme: Theme<CardContent>
-    var score: Int = 0
-    var hasSeen = [CardContent]()
+    private(set) var cards: [Card]
+    private(set) var theme: Theme<CardContent>
+    private(set) var score: Int = 0
+    private var hasSeen = [CardContent]()
     
     var indexOfTheOneAndOnlyFaceUpCard: Int? {
         get {
