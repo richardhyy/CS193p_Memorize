@@ -13,7 +13,7 @@ import SwiftUI
 
 class EmojiMemoryGame: ObservableObject {
     // outsiders can only `get` & cannot `set`
-    @Published var game: MemoryGame<String> = EmojiMemoryGame.createMemoryGame()
+    @Published private(set) var game: MemoryGame<String> = EmojiMemoryGame.createMemoryGame()
     
     static func createMemoryGame() -> MemoryGame<String> {
         // Create Theme
@@ -46,6 +46,10 @@ class EmojiMemoryGame: ObservableObject {
     
     func choose(card: MemoryGame<String>.Card) {
         game.choose(card: card)
+    }
+    
+    func resetGame() {
+        game = EmojiMemoryGame.createMemoryGame()
     }
     
 }
