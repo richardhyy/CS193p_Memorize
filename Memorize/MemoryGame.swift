@@ -9,7 +9,7 @@
 
 import Foundation
 
-struct MemoryGame<CardContent> where CardContent: Equatable {
+struct MemoryGame<CardContent>: Codable where CardContent: Equatable&Codable {
     private(set) var cards: [Card]
     private(set) var theme: Theme<CardContent>
     private(set) var score: Int = 0
@@ -24,6 +24,10 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
                 cards[index].isFaceUp = (index == newValue)
             }
         }
+    }
+    
+    var json: Data? {
+        return try? JSONEncoder().encode(self)
     }
     
     init(numberOfPairsOfCards: Int, theme: Theme<CardContent>, cardContentFactory: (Int) -> CardContent) {
@@ -59,7 +63,7 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
         }
     }
     
-    struct Card: Identifiable {
+    struct Card: Identifiable, Codable {
         var isFaceUp: Bool = false {
             didSet {
                 if isFaceUp {

@@ -8,8 +8,9 @@
 import Foundation
 import SwiftUI
 
-struct Theme<CardContent> {
+struct Theme<CardContent: Codable>: Codable {
     let name: String
-    let color: Color
+    let color: UIColor.RGB
+    let amountOfPair: Int
     let cardContents: [CardContent]
 }

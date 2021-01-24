@@ -22,7 +22,7 @@ struct EmojiMemoryGameView: View {
                 .padding(5)
             }
             .padding()
-            .foregroundColor(viewModel.game.theme.color)
+            .foregroundColor(Color(viewModel.game.theme.color))
             .navigationBarTitle(viewModel.game.theme.name, displayMode: .inline)
             .navigationBarItems(leading:
                 HStack {
@@ -60,6 +60,17 @@ struct CardView: View {
         }
     }
     
+    @State private var cardOffsetX: CGFloat = 0
+    @State private var cardOffsetY: CGFloat = 0
+    private func cardFlyInAnimation() {
+        cardOffsetX = CGFloat.random(in: 400...500) * (Bool.random() ? 1 : -1)
+        cardOffsetY = CGFloat.random(in: 400...500) * (Bool.random() ? 1 : -1)
+        withAnimation(.easeOut(duration: 0.75)) {
+            cardOffsetX = 0
+            cardOffsetY = 0
+        }
+    }
+    
     @ViewBuilder
     private func body(for size: CGSize) -> some View {
         if card.isFaceUp || !card.isMatched {
@@ -83,7 +94,11 @@ struct CardView: View {
                     .animation(card.isMatched ? Animation.linear(duration: 0.5).repeatForever(autoreverses: false) : .default)
             }
             .cardify(isFaceUp: card.isFaceUp)
-            .transition(AnyTransition.scale)
+            .transition(.scale)
+            .offset(x: cardOffsetX, y: cardOffsetY)
+            .onAppear() {
+                cardFlyInAnimation()
+            }
         }
         // it's a ViewBuilder so we don't have to use else or Group{} here to make every condition return
     }
