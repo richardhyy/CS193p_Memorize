@@ -19,6 +19,23 @@ extension UIColor {
         var green: CGFloat
         var blue: CGFloat
         var alpha: CGFloat
+        
+        init(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
+            self.red = red
+            self.green = green
+            self.blue = blue
+            self.alpha = alpha
+        }
+        
+        init?(fromString: String) {
+            let split: [Substring] = fromString.split(separator: ",")
+            if split.count >= 3 && split.count <= 4 {
+                self.init(red: CGFloat(Float.parse(String(split[0]))/255), green: CGFloat(Float.parse(String(split[1]))/255), blue: CGFloat(Float.parse(String(split[2]))/255), alpha: split.count == 4 ? CGFloat(Float.parse(String(split[3]))/100) : 1.0)
+            }
+            else {
+                return nil
+            }
+        }
     }
     
     convenience init(_ rgb: RGB) {

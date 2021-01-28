@@ -9,7 +9,7 @@
 
 import Foundation
 
-struct MemoryGame<CardContent>: Codable where CardContent: Equatable&Codable {
+struct MemoryGame<CardContent:Codable&Hashable>: Codable {
     private(set) var cards: [Card]
     private(set) var theme: Theme<CardContent>
     private(set) var score: Int = 0

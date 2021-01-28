@@ -10,35 +10,46 @@ import SwiftUI
 struct EmojiMemoryGameView: View {
     @ObservedObject var viewModel: EmojiMemoryGame
     
+    init(theme: Theme<String>) {
+        viewModel = EmojiMemoryGame(theme: theme)
+    }
+    
     var body: some View {
-        NavigationView {
-            Grid(viewModel.cards) { card in
-                CardView(card: card).onTapGesture {
-                    withAnimation(.linear(duration: 0.4)) {
-                        // `self.` no longer needed here
-                        viewModel.choose(card: card)
-                    }
+        VStack {
+            Group {
+                if viewModel.cards.count == 0 {
+                    Spacer()
+                    Image(systemName: "questionmark").imageScale(.large).padding()
+                    Text("No cards").padding(.bottom, 20)
+                    Spacer()
                 }
-                .padding(5)
-            }
-            .padding()
-            .foregroundColor(Color(viewModel.game.theme.color))
-            .navigationBarTitle(viewModel.game.theme.name, displayMode: .inline)
-            .navigationBarItems(leading:
-                HStack {
-                    Text("Score: \(viewModel.game.score)")
-                },
-                trailing:
-                    HStack {
-                        Button("New Game") {
-                            withAnimation(.easeInOut(duration: 0.5)) {
-                                viewModel.resetGame()
+                else {
+                    Grid(viewModel.cards) { card in
+                        CardView(card: card).onTapGesture {
+                            withAnimation(.linear(duration: 0.4)) {
+                                // `self.` no longer needed here
+                                viewModel.choose(card: card)
                             }
                         }
+                        .padding(5)
                     }
-            )
-            .navigationBarBackButtonHidden(true)
+                    .foregroundColor(Color(viewModel.game.theme.color))
+                    .padding()
+                }
+            }
+            Text("Score: \(viewModel.game.score)").padding()
         }
+        .navigationBarItems(
+            trailing:
+                HStack {
+                    Button("New Game") {
+                        withAnimation(.easeInOut(duration: 0.5)) {
+                            viewModel.resetGame()
+                        }
+                    }
+                }
+        )
+        .navigationTitle(viewModel.theme.name)
     }
 }
 
@@ -116,8 +127,7 @@ struct CardView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        let game = EmojiMemoryGame()
-        game.choose(card: game.cards[0])
-        return EmojiMemoryGameView(viewModel: game)
+        return EmojiMemoryGameView(theme: Theme(name: "Preview", color: ThemeColor.blue, amountOfPair: 4, cardContents: ["🍔", "🍦", "🍙", "🍡", "🍭", "🍧", "🍞"]))
+        // Theme<String>(color: ThemeColor.blue, name: "Preview", amountOfPair: 4, cardContents: ["🍔", "🍦", "🍙", "🍡", "🍭", "🍧", "🍞"])
     }
 }
